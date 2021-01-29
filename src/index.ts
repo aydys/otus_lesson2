@@ -1,24 +1,29 @@
-const readline = require('readline');
+import { runner } from "./runner";
+
+const readline = require("readline");
 
 const rl = readline.createInterface({
   input: process.stdin,
-  output: process.stdout
+  output: process.stdout,
 });
 
-const question = (): Promise<null> => 
+const question = (): Promise<null> =>
   new Promise((resolve) => {
-    // rl.question("> ", (answer: string) => {
-    //   console.log(`Result: ${answer}`)
-    // })
-    
-    resolve(null)
-  })
+    rl.question("> ", (answer: string) => {
+      const result = runner(answer);
 
+      if (result) {
+        console.log(`Result: ${result}`);
+      }
+
+      resolve(null);
+    });
+  });
 
 async function app(): Promise<null> {
   while (true) {
-    await question()
+    await question();
   }
 }
 
-app()
+app();
