@@ -6,7 +6,7 @@ export type ParsedLineType = Array<number | string>;
 export const parser = (line: string): ParsedLineType | null => {
   const stack = line.split(" ");
 
-  const result = stack.reduce((accum, val, ind, arr) => {
+  const result = stack.reduce((accum, _val, ind, arr) => {
     const prevItem = arr[ind - 1];
     const item = arr[ind];
 
