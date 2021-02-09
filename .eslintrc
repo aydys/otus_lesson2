@@ -11,13 +11,5 @@
     "sourceType": "module",
     "parser": "babel-eslint",
     "ecmaVersion": 2018
-  },
-  "overrides": [
-    {
-      "files": ["webpack.config.js"],
-      "rules": {
-        "@typescript-eslint/no-var-requires": ["off"]
-      }
-    }
-  ]
+  }
 }
