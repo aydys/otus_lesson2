@@ -1,1 +1,1 @@
-export { Board } from './Board';
+export { ListPosts } from './ListPosts';

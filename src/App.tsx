@@ -1,6 +1,6 @@
 import React from 'react';
-import { Board } from "./component";
+import { ListPosts } from "./component";
 
-export const App = () => {
-  return <Board />
+export const App: React.FC<unknown> = () => {
+  return <ListPosts />
 }
