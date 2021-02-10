@@ -13,7 +13,6 @@ export class Post extends React.Component  <PostProps, {}> {
   constructor(props: PostProps) {
     super(props)
     this.state = {
-      isIdOdd: props.post?.id % 2 === 0,
     }
   }
   

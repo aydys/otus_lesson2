@@ -6,7 +6,11 @@ type PostsProps = {}
 
 interface PostsState {
   posts: any[],
-  post: object
+  post: {
+    title: string,
+    id: number,
+    body: string
+  }
 }
 
 export class ListPosts extends React.Component <PostsProps, PostsState> {
@@ -15,7 +19,11 @@ export class ListPosts extends React.Component <PostsProps, PostsState> {
     super(props)
     this.state = {
       posts: [],
-      post: {}
+      post: {
+        title: '',
+        id: 0,
+        body: ''
+      }
     }
 
     this.getPosts = this.getPosts.bind(this)
@@ -30,7 +38,10 @@ export class ListPosts extends React.Component <PostsProps, PostsState> {
   onClick<T>(id: number): void {
     fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
       .then(response => response.json())
-      .then(post => this.setState({ post }))
+      .then(post => {
+        console.log(post)
+        this.setState({ post: post })
+      } )
   } 
 
   componentDidMount(): void {
@@ -40,12 +51,8 @@ export class ListPosts extends React.Component <PostsProps, PostsState> {
       })
   }
 
-  shouldComponentUpdate(_: PostsProps, nextState: PostsState): boolean {
-    return this.state.posts !== nextState.posts
-  }
-
   render() {
-    const { posts } = this.state;
+    const { posts, post } = this.state;
     return <React.Fragment>
       <h1>Posts</h1>
       <div>
@@ -59,7 +66,9 @@ export class ListPosts extends React.Component <PostsProps, PostsState> {
         </ul>
         </div>
           
-        {/* <div style={{width: '40%', float: 'right', marginLeft: 20}}><InfoPost post={post} /></div> */}
+        <div style={{width: '40%', float: 'right', marginLeft: 20, border: '1px solid grey'}}>
+          <InfoPost posts={posts} post={post} />
+        </div>
       </div>           
     </React.Fragment>
   }
